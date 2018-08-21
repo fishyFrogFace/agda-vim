@@ -41,19 +41,11 @@ set efm=\ \ /%\\&%f:%l\\,%c-%.%#,%E/%\\&%f:%l\\,%c-%.%#,%Z,%C%m,%-G%.%#
 " returns are byte offsets in the current line.  The code below should run
 " under Python 3, but it won't match up the holes correctly if you have
 " Unicode characters.
-function! s:UsingPython2()
-  return 1
-  "if has('python')
-  "  return 1
-  "endif
-  "return 0
-endfunction
 
-let s:using_python2 = s:UsingPython2()
-let s:python_until_eof = s:using_python2 ? 'python << EOF' : 'python3 << EOF'
-let s:python_cmd = s:using_python2 ? 'py ' : 'py3 '
+let s:python_until_eof = 'python3 << EOF'
+let s:python_cmd = 'python3 '
 
-if has('python') " || has('python3')
+if has('python3')
 
 function! s:LogAgda(name, text, append)
     let agdawinnr = bufwinnr('__Agda__')
